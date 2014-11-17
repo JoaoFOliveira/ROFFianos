@@ -1,6 +1,6 @@
 $(function() {
 
- 	//loadContacts();
+ 	loadContacts();
  	$(".loading").hide();
  	$(".content-primary").fadeIn(1000);
 
@@ -16,23 +16,11 @@ function sortJsonName(a,b){
     return a["RoffUser:Display Name"].toLowerCase() > b["RoffUser:Display Name"].toLowerCase() ? 1 : -1;
 };
 
-function loadContacts(){
-
-	$.getJSON('data/json/roff.json', null, function(data) {
-
-		data.sort(sortJsonName);
-
-	  	createList(data);
-	  	$(".loading").hide();
- 		$(".content-primary").fadeIn(1000);
-	});
-}
-
 function createList(data){
 	$.each(data, function(i, item) {
-		var indicativo = item['RoffUser:Indicativo Pais Mobile Phone'];
-			if(indicativo.substr(0,1) != '+') { indicativo = '+' + indicativo;};
-		var nome = item['RoffUser:Display Name'] ? item['RoffUser:Display Name'] : item['RoffUser:Email'];
+		var indicativo = item["RoffUser:Indicativo Pais Mobile Phone"];
+			if(indicativo.substr(0,1) !== "+") { indicativo = "+" + indicativo;};
+		var nome = item["RoffUser:Display Name"] ? item["RoffUser:Display Name"] : item["RoffUser:Email"];
 		var phone = item["RoffUser:Mobile Phone"];
 		var local = item["RoffUser_PesquisaAvancada_OutrosDados:Local Trabalho Nome"];
 		var area = item["RoffUser_PesquisaAvancada_OutrosDados:Area Nome"];
@@ -43,9 +31,9 @@ function createList(data){
 
 			$.ajax({
 			     async: false,
-			     type: 'GET',
+			     type: "GET",
 			     data: { row : row },
-			     url: 'data/write.php',
+			     url: "data/write.php",
 			     success: function(data) {
 			          console.log(row);
 			     }
@@ -56,4 +44,17 @@ function createList(data){
 
 	});
 	// $('.content-primary ul').listview('refresh');
+}
+
+function loadContacts(){
+
+	// Uncomment this to generate HTML
+	// $.getJSON("data/json/roff.json", null, function(data) {
+
+	// 	data.sort(sortJsonName);
+
+	//   	createList(data);
+	//   	$(".loading").hide();
+ 	//		$(".content-primary").fadeIn(1000);
+	// });
 }

@@ -17,12 +17,12 @@ $newArray = array();
 // Function to convert CSV into associative array
 function csvToArray($file, $delimiter) {
   if (($handle = fopen($file, 'r')) !== FALSE) {
-    $i = 0;
+    $var = 0;
     while (($lineArray = fgetcsv($handle, 4000, $delimiter, '"')) !== FALSE) {
       for ($j = 0; $j < count($lineArray); $j++) {
-        $arr[$i][$j] = $lineArray[$j];
+        $arr[$var][$j] = $lineArray[$j];
       }
-      $i++;
+      $var++;
     }
     fclose($handle);
   }
