@@ -49,12 +49,12 @@ function createList(data){
 function loadContacts(){
 
 	// Uncomment this to generate HTML
-	// $.getJSON("data/json/roff.json", null, function(data) {
+	$.getJSON("data/json/roff.json", null, function(data) {
 
-	// 	data.sort(sortJsonName);
+		data.sort(sortJsonName);
 
-	//   	createList(data);
-	//   	$(".loading").hide();
- 	//		$(".content-primary").fadeIn(1000);
-	// });
+	  	createList(data);
+	  	$(".loading").hide();
+ 			$(".content-primary").fadeIn(1000);
+	});
 }
